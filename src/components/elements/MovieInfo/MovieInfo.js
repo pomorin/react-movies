@@ -24,13 +24,15 @@ const MovieInfo = ({ movie, directors }) => (
         <p>{movie.overview}</p>
         <h3>IMDB RATING</h3>
         <div className="rmdb-rating">
-          <meter min="0" max="100" optimum="100" low="40" high="70" value={ movie.vote_average * 10}></meter>
+          <meter min="0" max="100" optimum="100" low="40" high="70" value={movie.vote_average * 10}></meter>
           <p className="rmdb-score">{movie.vote_average}</p>
         </div>
         {directors.length > 1 ? <h3>DIRECTORS</h3> : <h3>DIRECTOR</h3>}
         {directors.map( (element, i) => {
           return <p key={i} className="rmdb-director">{element.name}</p>
         })}
+        <h3>RELEASE DATE</h3>
+        <p className="rmdb-director">{movie.release_date}</p>
       </div>
       <FontAwesome className="fa-film" name="film" size="5x" />
     </div>
