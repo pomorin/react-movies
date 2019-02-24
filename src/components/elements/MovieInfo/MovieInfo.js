@@ -3,7 +3,9 @@ import { IMAGE_BASE_URL, POSTER_SIZE, BACKDROP_SIZE } from '../../../config';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import MovieThumb from '../MovieThumb/MovieThumb';
+import { convertDate } from '../../../helpers.js';
 import './MovieInfo.css';
+import moment from 'moment';
 
 const MovieInfo = ({ movie, directors }) => (
   <div className="rmdb-movieinfo"
@@ -28,16 +30,17 @@ const MovieInfo = ({ movie, directors }) => (
           <p className="rmdb-score">{movie.vote_average}</p>
         </div>
         {directors.length > 1 ? <h3>DIRECTORS</h3> : <h3>DIRECTOR</h3>}
-        {directors.map( (element, i) => {
+        {directors.map((element, i) => {
           return <p key={i} className="rmdb-director">{element.name}</p>
         })}
         <h3>RELEASE DATE</h3>
-        <p className="rmdb-director">{movie.release_date}</p>
+        <p className="rmdb-director">{moment(movie.release_date).format("MMM Do YYYY")}</p>
       </div>
       <FontAwesome className="fa-film" name="film" size="5x" />
     </div>
   </div>
 )
+
 
 MovieInfo.propTypes = {
   movie: PropTypes.object,
